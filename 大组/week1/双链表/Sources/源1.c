@@ -1,3 +1,4 @@
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<windows.h>
@@ -13,7 +14,7 @@ typedef enum Status {
     success,
 } Status;
 
-//å‡½æ•°çš„å£°æ˜
+//º¯ÊıµÄÉùÃ÷
 Status InitList_DuL(DuLinkedList* L);
 void DestroyList_DuL(DuLinkedList* L);
 Status InsertBeforeList_DuL(DuLNode* p, DuLNode* q);
@@ -28,7 +29,7 @@ Status InitList_DuL(DuLinkedList* L) {
     List = (DuLinkedList)malloc(sizeof(DuLNode));
     if (List == NULL)
     {
-        printf("å†…å­˜åˆ†é…å¤±è´¥\n");
+        printf("ÄÚ´æ·ÖÅäÊ§°Ü\n");
         return error;
     }
     List->next = NULL;
@@ -49,7 +50,7 @@ void DestroyList_DuL(DuLinkedList* L) {
 }
 
 Status InsertBeforeList_DuL(DuLNode* p, DuLNode* q) {
-    if (p->next == NULL)//å½“é“¾è¡¨ä¸ºç©ºæ—¶ï¼Œç›´æ¥è¿æ¥pã€q
+    if (p->next == NULL)//µ±Á´±íÎª¿ÕÊ±£¬Ö±½ÓÁ¬½Óp¡¢q
     {
         p->next = q;
         q->prior = p;
@@ -78,20 +79,20 @@ Status InsertAfterList_DuL(DuLNode* p, DuLNode* q) {
 Status DeleteList_DuL(DuLNode* p, ElemType* e) {
     if (p->next == NULL)
     {
-        printf("é“¾è¡¨ä¸ºç©ºï¼Œæ— æ³•åˆ é™¤\n");
+        printf("Á´±íÎª¿Õ£¬ÎŞ·¨É¾³ı\n");
         return error;
     }
     else
     {
         DuLinkedList posNode = p->next, posNodeFront = p;
-        //æ‰¾åˆ°åˆ é™¤ç»“ç‚¹çš„ä½ç½®
+        //ÕÒµ½É¾³ı½áµãµÄÎ»ÖÃ
         while (posNode->data != *e)
         {
             posNodeFront = posNode;
             posNode = posNode->next;
             if (posNode == NULL)
             {
-                printf("æ‰¾ä¸åˆ°è¯¥æ•°æ®\n");
+                printf("ÕÒ²»µ½¸ÃÊı¾İ\n");
                 return error;
             }
         }
@@ -112,11 +113,11 @@ Status DeleteList_DuL(DuLNode* p, ElemType* e) {
 void TraverseList_DuL(DuLinkedList L) {
     if (L == NULL)
     {
-        printf("é“¾è¡¨æœªåˆ›å»ºï¼Œè¯·å…ˆåˆ›å»ºé“¾è¡¨\n");
+        printf("Á´±íÎ´´´½¨£¬ÇëÏÈ´´½¨Á´±í\n");
     }
     else if (L->next == NULL)
     {
-        printf("å½“å‰é“¾è¡¨ä¸ºç©º\n");
+        printf("µ±Ç°Á´±íÎª¿Õ\n");
     }
     else
     {
@@ -132,18 +133,18 @@ void TraverseList_DuL(DuLinkedList L) {
 
 void show(void)
 {
-    printf("\n\n\n\nåŒé“¾è¡¨ADT\n\n");
-    printf("1.åˆ›å»ºç©ºé“¾è¡¨\n");
-    printf("2.é”€æ¯é“¾è¡¨\n");
-    printf("3.å¤´æ’æ³•æ’å…¥æ•°æ®\n");
-    printf("4.å°¾æ’æ³•æ’å…¥æ•°æ®\n");
-    printf("5.åˆ é™¤æ•°æ®\n");
-    printf("6.éå†é“¾è¡¨\n");
-    printf("7.é€€å‡º\n");
-    printf("\nè¯·è¾“å…¥å¯¹åº”çš„æ•°å­—(1-7)ï¼š");
+    printf("\n\n\n\nË«Á´±íADT\n\n");
+    printf("1.´´½¨¿ÕÁ´±í\n");
+    printf("2.Ïú»ÙÁ´±í\n");
+    printf("3.Í·²å·¨²åÈëÊı¾İ\n");
+    printf("4.Î²²å·¨²åÈëÊı¾İ\n");
+    printf("5.É¾³ıÊı¾İ\n");
+    printf("6.±éÀúÁ´±í\n");
+    printf("7.ÍË³ö\n");
+    printf("\nÇëÊäÈë¶ÔÓ¦µÄÊı×Ö(1-7)£º");
 }
 
-int judge_int(void)  //é˜²æ­¢ç”¨æˆ·ä¹±è¾“å…¥å…¶ä»–çš„å­—ç¬¦
+int judge_int(void)  //·ÀÖ¹ÓÃ»§ÂÒÊäÈëÆäËûµÄ×Ö·û
 {
     int len, num = 0, arg = 1;
     char word[10];
@@ -154,9 +155,9 @@ int judge_int(void)  //é˜²æ­¢ç”¨æˆ·ä¹±è¾“å…¥å…¶ä»–çš„å­—ç¬¦
         len = strlen(word);
         for (m = 0; m < len; m++)
         {
-            if (word[m] < '0' || word[m]>'9')  //æ£€éªŒæ˜¯å¦æœ‰ä¹±è¾“å…¥å…¶ä»–å­—ç¬¦
+            if (word[m] < '0' || word[m]>'9')  //¼ìÑéÊÇ·ñÓĞÂÒÊäÈëÆäËû×Ö·û
             {
-                printf("è¯·è¾“å…¥æ•´æ•°ï¼š");
+                printf("ÇëÊäÈëÕûÊı£º");
                 break;
             }
             else
@@ -167,7 +168,7 @@ int judge_int(void)  //é˜²æ­¢ç”¨æˆ·ä¹±è¾“å…¥å…¶ä»–çš„å­—ç¬¦
         }
     }
     j = len - 1;
-    for (m = 0; m < len; m++)  // å°†å­—ç¬¦é‡æ–°è½¬æ¢ä¸ºæ•°å­—
+    for (m = 0; m < len; m++)  // ½«×Ö·ûÖØĞÂ×ª»»ÎªÊı×Ö
     {
         for (k = 0; k < j; k++)
             arg *= 10;
@@ -191,116 +192,116 @@ int main(void)
         system("cls");
         switch (choice)
         {
-        case 1://åˆ›å»ºç©ºé“¾è¡¨
+        case 1://´´½¨¿ÕÁ´±í
         {
             if (InitList_DuL(&head))
             {
-                printf("ç©ºé“¾è¡¨åˆ›å»ºæˆåŠŸ\n");
+                printf("¿ÕÁ´±í´´½¨³É¹¦\n");
             }
             else
             {
-                printf("ç©ºé“¾è¡¨åˆ›å»ºå¤±è´¥\n");
+                printf("¿ÕÁ´±í´´½¨Ê§°Ü\n");
             }
             break;
         }
-        case 2://é”€æ¯é“¾è¡¨
+        case 2://Ïú»ÙÁ´±í
         {
             DestroyList_DuL(&head);
-            printf("é“¾è¡¨é”€æ¯æˆåŠŸ\n");
+            printf("Á´±íÏú»Ù³É¹¦\n");
             break;
         }
-        case 3://å¤´æ’æ³•æ’å…¥æ•°æ®
+        case 3://Í·²å·¨²åÈëÊı¾İ
         {
             if (head == NULL)
             {
-                printf("é“¾è¡¨æœªåˆ›å»ºï¼Œè¯·å…ˆåˆ›å»ºé“¾è¡¨\n");
+                printf("Á´±íÎ´´´½¨£¬ÇëÏÈ´´½¨Á´±í\n");
             }
             else
             {
                 DuLinkedList newNode;
                 if (InitList_DuL(&newNode))
                 {
-                    printf("è¯·è¾“å…¥æ•°æ®ï¼š");
+                    printf("ÇëÊäÈëÊı¾İ£º");
                     scanf("%d", &newNode->data);
                     if (InsertBeforeList_DuL(head, newNode))
                     {
-                        printf("æ•°æ®æ’å…¥æˆåŠŸ\n");
+                        printf("Êı¾İ²åÈë³É¹¦\n");
                     }
                     else
                     {
-                        printf("æ•°æ®æ’å…¥å¤±è´¥\n");
+                        printf("Êı¾İ²åÈëÊ§°Ü\n");
                     }
                 }
                 else
                 {
-                    printf("æ•°æ®æ’å…¥å¤±è´¥\n");
+                    printf("Êı¾İ²åÈëÊ§°Ü\n");
                 }
             }
             break;
         }
-        case 4://å°¾æ’æ³•æ’å…¥æ•°æ®
+        case 4://Î²²å·¨²åÈëÊı¾İ
         {
             if (head == NULL)
             {
-                printf("é“¾è¡¨æœªåˆ›å»ºï¼Œè¯·å…ˆåˆ›å»ºé“¾è¡¨\n");
+                printf("Á´±íÎ´´´½¨£¬ÇëÏÈ´´½¨Á´±í\n");
             }
             else
             {
                 DuLinkedList newNode;
                 if (InitList_DuL(&newNode))
                 {
-                    printf("è¯·è¾“å…¥æ•°æ®ï¼š");
+                    printf("ÇëÊäÈëÊı¾İ£º");
                     scanf("%d", &newNode->data);
                     if (InsertAfterList_DuL(head, newNode))
                     {
-                        printf("æ•°æ®æ’å…¥æˆåŠŸ\n");
+                        printf("Êı¾İ²åÈë³É¹¦\n");
                     }
                     else
                     {
-                        printf("æ•°æ®æ’å…¥å¤±è´¥\n");
+                        printf("Êı¾İ²åÈëÊ§°Ü\n");
                     }
                 }
                 else
                 {
-                    printf("æ•°æ®æ’å…¥å¤±è´¥\n");
+                    printf("Êı¾İ²åÈëÊ§°Ü\n");
                 }
             }
             break;
         }
-        case 5://åˆ é™¤æ•°æ®
+        case 5://É¾³ıÊı¾İ
         {
             if (head == NULL)
             {
-                printf("é“¾è¡¨æœªåˆ›å»ºï¼Œè¯·å…ˆåˆ›å»ºé“¾è¡¨\n");
+                printf("Á´±íÎ´´´½¨£¬ÇëÏÈ´´½¨Á´±í\n");
             }
             else
             {
-                printf("ä½ æƒ³åˆ é™¤å“ªä¸ªæ•°æ®ï¼š");
+                printf("ÄãÏëÉ¾³ıÄÄ¸öÊı¾İ£º");
                 scanf("%d", &num);
                 if (DeleteList_DuL(head, &num))
                 {
-                    printf("æ•°æ®åˆ é™¤æˆåŠŸ\n");
+                    printf("Êı¾İÉ¾³ı³É¹¦\n");
                 }
                 else
                 {
-                    printf("æ•°æ®åˆ é™¤å¤±è´¥\n");
+                    printf("Êı¾İÉ¾³ıÊ§°Ü\n");
                 }
             }
             break;
         }
-        case 6://éå†é“¾è¡¨
+        case 6://±éÀúÁ´±í
         {
             TraverseList_DuL(head);
             break;
         }
-        case 7://é€€å‡ºç¨‹åº 
+        case 7://ÍË³ö³ÌĞò 
         {
             DestroyList_DuL(&head);
             break;
         }
         default:
         {
-            printf("è¯·é‡æ–°è¾“å…¥æ•°å­—!(1-7)\n");
+            printf("ÇëÖØĞÂÊäÈëÊı×Ö!(1-7)\n");
             break;
         }
         }

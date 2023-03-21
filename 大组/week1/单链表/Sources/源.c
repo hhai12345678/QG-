@@ -5,16 +5,16 @@
 typedef int ElemType;
 typedef struct LNode
 {
-    ElemType data;//æ•°æ®åŸŸ
-    struct LNode* next;//æŒ‡é’ˆåŸŸ
+    ElemType data;//Êı¾İÓò
+    struct LNode* next;//Ö¸ÕëÓò
 } LNode, * LinkedList;
 typedef enum Status {
     error,
     success
 } Status;
 
-//å‡½æ•°çš„å£°æ˜
-Status InitList(LinkedList* L);//åˆå§‹åŒ–æ“ä½œï¼Œå»ºç«‹ä¸€ä¸ªç©ºçš„çº¿æ€§è¡¨
+//º¯ÊıµÄÉùÃ÷
+Status InitList(LinkedList* L);//³õÊ¼»¯²Ù×÷£¬½¨Á¢Ò»¸ö¿ÕµÄÏßĞÔ±í
 void DestroyList(LinkedList* L);
 Status InsertList(LNode* p, ElemType data);
 Status DeleteList(LNode* p, ElemType e);
@@ -27,23 +27,23 @@ LNode* ReverseEvenList(LinkedList* L);
 void show(void);
 int judge_int(void);
 
-Status InitList(LinkedList* L) //å•é“¾è¡¨çš„åˆå§‹åŒ–
+Status InitList(LinkedList* L) //µ¥Á´±íµÄ³õÊ¼»¯
 {
     LinkedList list;
 
     list = (LinkedList)malloc(sizeof(LNode));
     if (list == NULL)
     {
-        printf("å†…å­˜åˆ†é…å¤±è´¥\n");
+        printf("ÄÚ´æ·ÖÅäÊ§°Ü\n");
         return error;
     }
     list->next = NULL;
     *L = list;
 
-    return success;//ç”Ÿæˆç¬¬ä¸€ä¸ªèŠ‚ç‚¹ï¼Œå¦‚æœæˆåŠŸè¿”å›å€¼1
+    return success;//Éú³ÉµÚÒ»¸ö½Úµã£¬Èç¹û³É¹¦·µ»ØÖµ1
 }
 
-void DestroyList(LinkedList* L) {//åˆ é™¤é“¾è¡¨
+void DestroyList(LinkedList* L) {//É¾³ıÁ´±í
     LinkedList temp;
 
     while (*L != NULL)
@@ -54,33 +54,33 @@ void DestroyList(LinkedList* L) {//åˆ é™¤é“¾è¡¨
     }
 }
 
-Status InsertList(LNode* p, ElemType data) //æ’å…¥æ•°æ®
+Status InsertList(LNode* p, ElemType data) //²åÈëÊı¾İ
 {
     LinkedList current = p;
     LinkedList newNode = (LinkedList)malloc(sizeof(LNode));
 
     if (newNode == NULL)
     {
-        printf("å†…å­˜åˆ†é…å¤±è´¥\n");
-        return error;//åˆ¤æ–­é“¾è¡¨æ˜¯å¦ä¸ºç©º
+        printf("ÄÚ´æ·ÖÅäÊ§°Ü\n");
+        return error;//ÅĞ¶ÏÁ´±íÊÇ·ñÎª¿Õ
     }
     newNode->data = data;
     newNode->next = NULL;
     while (current->next != NULL)
     {
-        current = current->next;//åœ¨ç³»ç»Ÿä¸­ç”Ÿæˆä¸€ä¸ªç©ºç»“ç‚¹
+        current = current->next;//ÔÚÏµÍ³ÖĞÉú³ÉÒ»¸ö¿Õ½áµã
     }
-    current->next = newNode;//å°†æ•°æ®å…ƒç´ èµ‹å€¼ç»™current->next
+    current->next = newNode;//½«Êı¾İÔªËØ¸³Öµ¸øcurrent->next
     return success;
 }
 
-Status DeleteList(LNode* p, ElemType e)//åˆ é™¤æ•°æ®
+Status DeleteList(LNode* p, ElemType e)//É¾³ıÊı¾İ
 {
     LinkedList posNode = p->next;
     LinkedList posNodeFront = p;
     if (posNode == NULL)
     {
-        printf("é“¾è¡¨ä¸ºç©ºï¼Œæ— æ³•åˆ é™¤\n");
+        printf("Á´±íÎª¿Õ£¬ÎŞ·¨É¾³ı\n");
     }
     else
     {
@@ -90,17 +90,17 @@ Status DeleteList(LNode* p, ElemType e)//åˆ é™¤æ•°æ®
             posNode = posNode->next;
             if (posNode == NULL)
             {
-                printf("æ²¡æœ‰è¯¥æ•°æ®\n");//åˆ¤æ–­æœ‰æ— æ•°æ®
+                printf("Ã»ÓĞ¸ÃÊı¾İ\n");//ÅĞ¶ÏÓĞÎŞÊı¾İ
                 return error;
             }
         }
-        posNodeFront->next = posNode->next;//å°†ä»–çš„å‰ç»§ç»“ç‚¹çš„æŒ‡é’ˆç»•è¿‡æŒ‡å‘åç»§ç»“ç‚¹
+        posNodeFront->next = posNode->next;//½«ËûµÄÇ°¼Ì½áµãµÄÖ¸ÕëÈÆ¹ıÖ¸Ïòºó¼Ì½áµã
         free(posNode);
         return success;
     }
 }
 
-void TraverseList(LinkedList L) //éå†
+void TraverseList(LinkedList L) //±éÀú
 {
     LinkedList temp;
 
@@ -113,23 +113,23 @@ void TraverseList(LinkedList L) //éå†
     printf("\n");
 }
 
-Status SearchList(LinkedList L, ElemType e) //æŸ¥æ‰¾æ•°æ®
+Status SearchList(LinkedList L, ElemType e) //²éÕÒÊı¾İ
 {
     while (L != NULL)
     {
         if (L->data == e)
         {
-            return success;//æŸ¥æ‰¾æˆåŠŸï¼Œè¿”å›ç»“ç‚¹çš„æ•°æ®
+            return success;//²éÕÒ³É¹¦£¬·µ»Ø½áµãµÄÊı¾İ
         }
-        L = L->next;//å¦‚æœä¸æ˜¯ï¼Œå°±è®©Lçš„æŒ‡é’ˆå‘åç§»åŠ¨ï¼Œä¸æ–­æŒ‡å‘ä¸‹ä¸€ä¸ªç»“ç‚¹
+        L = L->next;//Èç¹û²»ÊÇ£¬¾ÍÈÃLµÄÖ¸ÕëÏòºóÒÆ¶¯£¬²»¶ÏÖ¸ÏòÏÂÒ»¸ö½áµã
     }
-    return error;//è‹¥åˆ°é“¾è¡¨æœ«å°¾Lä¸ºç©ºï¼Œåˆ™è¯´æ˜ä¸å­˜åœ¨
+    return error;//Èôµ½Á´±íÄ©Î²LÎª¿Õ£¬ÔòËµÃ÷²»´æÔÚ
 }
 
 
 
 
-/*é€’å½’å®ç°
+/*µİ¹éÊµÏÖ
 void ReverseList(LinkedList L) {
     LinkedList current, next, pre;
     current = L->next;
@@ -138,19 +138,19 @@ void ReverseList(LinkedList L) {
     {
         next = current->next;
         current->next = pre;
-        pre = current;ä»åå‘å‰åè½¬
+        pre = current;´ÓºóÏòÇ°·´×ª
         current = next;
     }
     L->next = pre;
 }
 */
 
-Status ReverseList(LinkedList* L) //åè½¬é“¾è¡¨,è¿­ä»£å®ç°
+Status ReverseList(LinkedList* L) //·´×ªÁ´±í,µü´úÊµÏÖ
 {
-    LNode* newHead;		//å‚¨å­˜æ¯æ¬¡åè½¬åçš„ç¬¬ä¸€ä¸ªèŠ‚ç‚¹ 
-    LNode* p1;			//æ¯æ¬¡éƒ½æŒ‡å‘å‰ä¸€ä¸ªèŠ‚ç‚¹	
-    LNode* p2;			// å‚¨å­˜æœªåè½¬å‰çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹ 
-    p1 = (*L)->next;//ç”¨æŒ‡é’ˆè®°å½•ä¸‹ä¸€ä¸ªç»“ç‚¹çš„ä½ç½®ï¼Œå†åè½¬å½“å‰ç»“ç‚¹çš„æŒ‡å‘
+    LNode* newHead;		//´¢´æÃ¿´Î·´×ªºóµÄµÚÒ»¸ö½Úµã 
+    LNode* p1;			//Ã¿´Î¶¼Ö¸ÏòÇ°Ò»¸ö½Úµã	
+    LNode* p2;			// ´¢´æÎ´·´×ªÇ°µÄÏÂÒ»¸ö½Úµã 
+    p1 = (*L)->next;//ÓÃÖ¸Õë¼ÇÂ¼ÏÂÒ»¸ö½áµãµÄÎ»ÖÃ£¬ÔÙ·´×ªµ±Ç°½áµãµÄÖ¸Ïò
     p2 = p1->next;
     p1->next = NULL;
     newHead = p1;
@@ -163,7 +163,7 @@ Status ReverseList(LinkedList* L) //åè½¬é“¾è¡¨,è¿­ä»£å®ç°
     }
     (*L)->next = newHead;
 }
-LNode* ReverseEvenList(LinkedList* L)//äº¤æ¢å•é“¾è¡¨å¥‡å¶èŠ‚ç‚¹
+LNode* ReverseEvenList(LinkedList* L)//½»»»µ¥Á´±íÆæÅ¼½Úµã
 {
     LinkedList p, q, f;
     f = (LinkedList)malloc(sizeof(LNode));
@@ -176,7 +176,7 @@ LNode* ReverseEvenList(LinkedList* L)//äº¤æ¢å•é“¾è¡¨å¥‡å¶èŠ‚ç‚¹
         q->next = p->next->next;
         p->next->next = q;
         p = q;
-        q = q->next;//å¥‡å¶äº¤äº’
+        q = q->next;//ÆæÅ¼½»»¥
     }
     (*L) = f->next;
     f->next = NULL;
@@ -186,26 +186,26 @@ LNode* ReverseEvenList(LinkedList* L)//äº¤æ¢å•é“¾è¡¨å¥‡å¶èŠ‚ç‚¹
 }
 
 
-LNode* FindMidNode(LinkedList L) //æŸ¥æ‰¾ä¸­é—´ç»“ç‚¹
+LNode* FindMidNode(LinkedList L) //²éÕÒÖĞ¼ä½áµã
 {
-    LinkedList slow = L, fast = L;//è®¾ç½®å¿«æ…¢æŒ‡é’ˆ
+    LinkedList slow = L, fast = L;//ÉèÖÃ¿ìÂıÖ¸Õë
     while (fast != NULL && slow != NULL)
     {
-        fast = fast->next->next; //å¿«æŒ‡é’ˆæ¯æ¬¡èµ°ä¸¤æ­¥ï¼Œæ…¢æŒ‡é’ˆæ¯æ¬¡èµ°ä¸€æ­¥
+        fast = fast->next->next; //¿ìÖ¸ÕëÃ¿´Î×ßÁ½²½£¬ÂıÖ¸ÕëÃ¿´Î×ßÒ»²½
         slow = slow->next;
     }
-    return slow;//å¾…å¿«æŒ‡é’ˆèµ°åˆ°å°¾ï¼Œæ…¢æŒ‡é’ˆæ­£å¥½èµ°åˆ°ä¸­é—´èŠ‚ç‚¹
+    return slow;//´ı¿ìÖ¸Õë×ßµ½Î²£¬ÂıÖ¸ÕëÕıºÃ×ßµ½ÖĞ¼ä½Úµã
 }
 
-Status IsLoopList(LinkedList L) //åˆ¤æ–­é“¾è¡¨æ˜¯å¦æˆç¯
+Status IsLoopList(LinkedList L) //ÅĞ¶ÏÁ´±íÊÇ·ñ³É»·
 {
-    LinkedList fast = L, slow = L;////è®¾ç½®å¿«æ…¢æŒ‡é’ˆ
+    LinkedList fast = L, slow = L;////ÉèÖÃ¿ìÂıÖ¸Õë
     while (fast->next != NULL && slow->next != NULL)
     {
         slow = slow->next;
         if ((fast = fast->next->next) == NULL)
             return error;
-        if (fast == slow)//ç”¨æŒ‡é’ˆslowå’Œfastå¯¹é“¾è¡¨è¿›è¡Œéå†ï¼Œæ…¢æŒ‡é’ˆslowæ¯æ¬¡èµ°ä¸€æ­¥ï¼Œå¿«æŒ‡é’ˆfastæ¯æ¬¡èµ°ä¸¤æ­¥ï¼Œå¦‚æœé“¾è¡¨æˆç¯ï¼Œå®ƒä»¬æœ€åéƒ½ä¼šç›¸é‡ã€‚
+        if (fast == slow)//ÓÃÖ¸ÕëslowºÍfast¶ÔÁ´±í½øĞĞ±éÀú£¬ÂıÖ¸ÕëslowÃ¿´Î×ßÒ»²½£¬¿ìÖ¸ÕëfastÃ¿´Î×ßÁ½²½£¬Èç¹ûÁ´±í³É»·£¬ËüÃÇ×îºó¶¼»áÏàÓö¡£
             return success;
     }
     return error;
@@ -213,22 +213,22 @@ Status IsLoopList(LinkedList L) //åˆ¤æ–­é“¾è¡¨æ˜¯å¦æˆç¯
 
 void show(void)
 {
-    printf("\n\n\n\nå•é“¾è¡¨ADT\n\n");
-    printf("1.åˆ›å»ºç©ºé“¾è¡¨\n");
-    printf("2.é”€æ¯é“¾è¡¨\n");
-    printf("3.æ’å…¥ç»“ç‚¹\n");
-    printf("4.åˆ é™¤ç»“ç‚¹\n");
-    printf("5.éå†é“¾è¡¨\n");
-    printf("6.æŸ¥æ‰¾æ•°æ®\n");
-    printf("7.åè½¬é“¾è¡¨\n");
-    printf("8.åˆ¤æ–­é“¾è¡¨æ˜¯å¦æˆç¯\n");
-    printf("9.äº¤æ¢å•é“¾è¡¨å¥‡å¶èŠ‚ç‚¹\n");
-    printf("10.æŸ¥æ‰¾ä¸­é—´ç»“ç‚¹\n");
-    printf("11.é€€å‡º\n");
-    printf("\nè¯·è¾“å…¥å¯¹åº”çš„æ•°å­—(1-11)ï¼š");
+    printf("\n\n\n\nµ¥Á´±íADT\n\n");
+    printf("1.´´½¨¿ÕÁ´±í\n");
+    printf("2.Ïú»ÙÁ´±í\n");
+    printf("3.²åÈë½áµã\n");
+    printf("4.É¾³ı½áµã\n");
+    printf("5.±éÀúÁ´±í\n");
+    printf("6.²éÕÒÊı¾İ\n");
+    printf("7.·´×ªÁ´±í\n");
+    printf("8.ÅĞ¶ÏÁ´±íÊÇ·ñ³É»·\n");
+    printf("9.½»»»µ¥Á´±íÆæÅ¼½Úµã\n");
+    printf("10.²éÕÒÖĞ¼ä½áµã\n");
+    printf("11.ÍË³ö\n");
+    printf("\nÇëÊäÈë¶ÔÓ¦µÄÊı×Ö(1-11)£º");
 }
 
-int judge_int(void)  //é˜²æ­¢ç”¨æˆ·ä¹±è¾“å…¥å…¶ä»–çš„å­—ç¬¦
+int judge_int(void)  //·ÀÖ¹ÓÃ»§ÂÒÊäÈëÆäËûµÄ×Ö·û
 {
     int len, num = 0, arg = 1;
     char word[10];
@@ -239,9 +239,9 @@ int judge_int(void)  //é˜²æ­¢ç”¨æˆ·ä¹±è¾“å…¥å…¶ä»–çš„å­—ç¬¦
         len = strlen(word);
         for (m = 0; m < len; m++)
         {
-            if (word[m] < '0' || word[m]>'9')  //æ£€éªŒæ˜¯å¦æœ‰ä¹±è¾“å…¥å…¶ä»–å­—ç¬¦
+            if (word[m] < '0' || word[m]>'9')  //¼ìÑéÊÇ·ñÓĞÂÒÊäÈëÆäËû×Ö·û
             {
-                printf("è¯·è¾“å…¥æ•´æ•°ï¼š");
+                printf("ÇëÊäÈëÕûÊı£º");
                 break;
             }
             else
@@ -252,7 +252,7 @@ int judge_int(void)  //é˜²æ­¢ç”¨æˆ·ä¹±è¾“å…¥å…¶ä»–çš„å­—ç¬¦
         }
     }
     j = len - 1;
-    for (m = 0; m < len; m++)  // å°†å­—ç¬¦é‡æ–°è½¬æ¢ä¸ºæ•°å­—
+    for (m = 0; m < len; m++)  // ½«×Ö·ûÖØĞÂ×ª»»ÎªÊı×Ö
     {
         for (k = 0; k < j; k++)
             arg *= 10;
@@ -275,64 +275,64 @@ int main(void)
         system("cls");
         switch (choice)
         {
-        case 1://åˆ›å»ºç©ºé“¾è¡¨
+        case 1://´´½¨¿ÕÁ´±í
         {
             if (InitList(&head))
             {
-                printf("ç©ºé“¾è¡¨åˆ›å»ºæˆåŠŸ\n");
+                printf("¿ÕÁ´±í´´½¨³É¹¦\n");
             }
             else
             {
-                printf("ç©ºé“¾è¡¨åˆ›å»ºå¤±è´¥\n");
+                printf("¿ÕÁ´±í´´½¨Ê§°Ü\n");
             }
             break;
         }
-        case 2://é”€æ¯é“¾è¡¨
+        case 2://Ïú»ÙÁ´±í
         {
             DestroyList(&head);
-            printf("é“¾è¡¨é”€æ¯å®Œæˆ\n");
+            printf("Á´±íÏú»ÙÍê³É\n");
             break;
         }
-        case 3://æ’å…¥æ•°æ®
+        case 3://²åÈëÊı¾İ
         {
             if (head == NULL)
             {
-                printf("é“¾è¡¨ä¸ºç©ºï¼Œ è¯·å…ˆåˆ›å»ºé“¾è¡¨\n");
+                printf("Á´±íÎª¿Õ£¬ ÇëÏÈ´´½¨Á´±í\n");
             }
             else
             {
-                printf("è¯·è¾“å…¥æ•°æ®ï¼š");
+                printf("ÇëÊäÈëÊı¾İ£º");
                 scanf_s("%d", &num);
                 if (InsertList(head, num))
                 {
-                    printf("æ•°æ®æ’å…¥æˆåŠŸ\n");
+                    printf("Êı¾İ²åÈë³É¹¦\n");
                 }
                 else
                 {
-                    printf("æ•°æ®æ’å…¥å¤±è´¥\n");
+                    printf("Êı¾İ²åÈëÊ§°Ü\n");
                 }
             }
             break;
         }
-        case 4://åˆ é™¤æ•°æ®
+        case 4://É¾³ıÊı¾İ
         {
-            printf("ä½ æƒ³åˆ é™¤å“ªä¸ªæ•°æ®ï¼š");
+            printf("ÄãÏëÉ¾³ıÄÄ¸öÊı¾İ£º");
             scanf_s("%d", &num);
             if (DeleteList(head, num))
             {
-                printf("æ•°æ®åˆ é™¤æˆåŠŸ\n");
+                printf("Êı¾İÉ¾³ı³É¹¦\n");
             }
             else
             {
-                printf("æ•°æ®åˆ é™¤å¤±è´¥\n");
+                printf("Êı¾İÉ¾³ıÊ§°Ü\n");
             }
             break;
         }
-        case 5://éå†é“¾è¡¨
+        case 5://±éÀúÁ´±í
         {
             if (head == NULL || head->next == NULL)
             {
-                printf("é“¾è¡¨ä¸å­˜åœ¨æˆ–è€…åªå­˜åœ¨ä¸€ä¸ªç©ºçš„å¤´ç»“ç‚¹\n");
+                printf("Á´±í²»´æÔÚ»òÕßÖ»´æÔÚÒ»¸ö¿ÕµÄÍ·½áµã\n");
             }
             else
             {
@@ -340,100 +340,100 @@ int main(void)
             }
             break;
         }
-        case 6://æŸ¥æ‰¾æ•°æ®
+        case 6://²éÕÒÊı¾İ
         {
-            printf("è¯·è¾“å…¥ä½ è¦æŸ¥æ‰¾çš„æ•°æ®ï¼š");
+            printf("ÇëÊäÈëÄãÒª²éÕÒµÄÊı¾İ£º");
             scanf_s("%d", &num);
             if (SearchList(head, num))
             {
-                printf("è¯¥æ•°å­˜åœ¨\n");
+                printf("¸ÃÊı´æÔÚ\n");
             }
             else
             {
-                printf("è¯¥æ•°ä¸å­˜åœ¨\n");
+                printf("¸ÃÊı²»´æÔÚ\n");
             }
             break;
         }
-        case 7://åè½¬é“¾è¡¨
+        case 7://·´×ªÁ´±í
         {
             if (head == NULL || head->next == NULL)
             {
-                printf("é“¾è¡¨ä¸ºç©ºæˆ–è€…é“¾è¡¨åªå«æœ‰ä¸¤ä¸ªç»“ç‚¹\n");
-                printf("é“¾è¡¨åè½¬å¤±è´¥\n");
+                printf("Á´±íÎª¿Õ»òÕßÁ´±íÖ»º¬ÓĞÁ½¸ö½áµã\n");
+                printf("Á´±í·´×ªÊ§°Ü\n");
             }
             else
             {
                 if (ReverseList(&head))
                 {
-                    printf("é“¾è¡¨åè½¬æˆåŠŸ\n");
+                    printf("Á´±í·´×ª³É¹¦\n");
                 }
                 else
                 {
-                    printf("é“¾è¡¨åè½¬å¤±è´¥\n");
+                    printf("Á´±í·´×ªÊ§°Ü\n");
                 }
 
             }
             break;
         }
-        case 8://åˆ¤æ–­é“¾è¡¨æ˜¯å¦æˆç¯
+        case 8://ÅĞ¶ÏÁ´±íÊÇ·ñ³É»·
         {
             if (head == NULL || head->next == NULL)
             {
-                printf("é“¾è¡¨ä¸ºç©º\n");
+                printf("Á´±íÎª¿Õ\n");
             }
             else
             {
                 if (IsLoopList(head))
                 {
-                    printf("é“¾è¡¨æˆç¯\n");
+                    printf("Á´±í³É»·\n");
                 }
                 else
                 {
-                    printf("é“¾è¡¨æ²¡æœ‰æˆç¯\n");
+                    printf("Á´±íÃ»ÓĞ³É»·\n");
                 }
             }
             break;
         }
-        case 9://äº¤æ¢å•é“¾è¡¨å¥‡å¶èŠ‚ç‚¹
+        case 9://½»»»µ¥Á´±íÆæÅ¼½Úµã
         { 
             if (head == NULL || head->next == NULL)
         {
-                printf("é“¾è¡¨ä¸ºç©º\n");
+                printf("Á´±íÎª¿Õ\n");
         }
         else
         {
             if (ReverseEvenList(&head))
             {
-                printf("äº¤æ¢æˆåŠŸ\n");
+                printf("½»»»³É¹¦\n");
             }
             else
             {
-                printf("äº¤æ¢å¤±è´¥\n");
+                printf("½»»»Ê§°Ü\n");
             }
 
         }
             break;
         }
-        case 10://æŸ¥æ‰¾ä¸­é—´ç»“ç‚¹
+        case 10://²éÕÒÖĞ¼ä½áµã
         {
             if (head == NULL || head->next == NULL)
             {
-                printf("è¿™æ˜¯ç©ºé“¾è¡¨\n");
+                printf("ÕâÊÇ¿ÕÁ´±í\n");
             }
             else
             {
-                printf("é“¾è¡¨ä¸­é—´å‚¨å­˜çš„å€¼ä¸º%d\n", (FindMidNode(head))->data);
+                printf("Á´±íÖĞ¼ä´¢´æµÄÖµÎª%d\n", (FindMidNode(head))->data);
             }
             break;
         }
-        case 11://é”€æ¯é“¾è¡¨
+        case 11://Ïú»ÙÁ´±í
         {
             DestroyList(&head);
             break;
         }
         default:
         {
-            printf("è¯·é‡æ–°è¾“å…¥æ•°å­—ï¼(1-11)\n");
+            printf("ÇëÖØĞÂÊäÈëÊı×Ö£¡(1-11)\n");
             break;
         }
         }
